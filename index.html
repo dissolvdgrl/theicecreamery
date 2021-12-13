@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ice Creamery - Premium Low Carb Sugar-free Ice Cream</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/master.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+<body>
+    <header :class="bgColor" class="transition duration-300 ease-in-out" x-data="flavours()">
+        <nav class="p-8 md:py-0 mx-auto flex justify-between w-full max-w-screen-lg absolute top-8 right-0 left-0 z-30">
+            <div>
+                <a href="/">
+                    <img src="images/logo.svg" alt="The Ice Creamery Logo" class="logo">
+                </a>
+            </div>
+            <div class="flex-end flex flex-col" x-data="{ open: false }">
+                <div class="flex justify-end">
+                    <a href="/" class="mr-2">
+                        <img src="images/ig_logo.svg" alt="@theicecreamery">
+                    </a>
+                    <a href="/">
+                        <img src="images/fb_logo.svg" alt="@theicecreamery">
+                    </a>
+                </div>
+                <div
+                    class="md:hidden mt-4 text-right bg-white font-heading rounded-full py-2 px-4 shadow-lg cursor-pointer"
+                    x-on:click="open = !open">
+                    <span class="text-gray-500 text-right">Menu</span>
+                </div>
+                <div class="bg-white p-4 shadow-lg md:shadow-none flex flex-col md:flex md:flex-row md:bg-transparent mt-2" x-bind:class="{ 'hidden': !open }" x-cloak="">
+                    <a href="#about" class="mb-2 md:mb-0 mr-8 text-stone font-body transition duration-200 ease-in-out hover:text-hotPink">About</a>
+                    <a href="#whats-inside" class="mb-2 md:mb-0 mr-8 text-stone font-body transition duration-200 ease-in-out hover:text-hotPink">What's Inside</a>
+                    <a href="#where-to-buy" class="mb-2 md:mb-0 mr-8 text-stone font-body transition duration-200 ease-in-out hover:text-hotPink">Where To Buy</a>
+                    <a href="#contact" class="text-stone font-body transition duration-200 ease-in-out hover:text-hotPink">Contact</a>
+                </div>
+            </div>
+        </nav>
+        <div class="slide-container mx-auto w-4/5 flex flex-row pt-48 md:pt-32 md:max-w-screen-lg">
+            <div class="header-text flex flex-col items-start justify-center w-full pb-16 md:pb-0 md:w-2/5">
+                <div class="bg-white font-heading rounded-full py-2 px-4 shadow-lg">
+                    <span class="text-gray-500">Premium</span>
+                </div>
+                <h1 class="font-heading font-bold text-4xl md:text-6xl text-stone mt-6">Creamy,<br> carb-conscious<br> ice cream.
+                </h1>
+
+                <div class="slide-controls mt-6 flex w-full md:w-4/5">
+                    <div id="left" class="cursor-pointer font-heading border-r-2 border-gray-400 flex w-1/2"
+                    x-on:click="previous()">
+                        <img src="/images/arrow.svg" alt="" class="arrow mr-2">
+                        <span class="ml-2" x-text="previousFlavour.name"></span>
+                    </div>
+                    <div id="right" class="cursor-pointer font-heading pl-4 flex justify-end w-1/2" x-on:click="next()">
+                        <span class="mr-2" x-text="nextFlavour.name"></span>
+                        <img src="/images/arrow.svg" alt="" class="arrow transform rotate-180">
+                    </div>
+                </div> <!-- /slide controls -->
+            </div>
+
+            <template x-for="flavour in flavours" :key="flavour.id">
+                <div
+                    x-show="currentFlavour.id === flavour.id"
+                    class="w-3/5 flex items-center md:justify-center pt-8 relative">
+                    <div class="hidden absolute right-16 top-36 md:flex flex-col items-start z-20">
+                        <div class="bg-white font-heading rounded-full py-2 px-4 mb-4 shadow-lg">
+                            <span class="text-gray-500">±2g carbs</span>
+                        </div>
+                        <div class="bg-white font-heading rounded-full py-2 px-4 shadow-lg">
+                            <span class="text-gray-500">No Added Sugar</span>
+                        </div>
+                    </div>
+                    <img :src="`/images/${flavour.circles}`" alt="" class="absolute z-0 w-3/4 transition duration-300 ease-in-out">
+                    <img :src="`/images/${flavour.tub}`" alt="" class="w-full h-auto md:w-3/5 z-10 transition duration-300 ease-in-out">
+                </div>
+            </template>
+        </div>
+    </header>
+
+    <main class="overflow-hidden">
+        <section id="about" class="py-24">
+            <div class="max-w-screen-lg flex flex-col md:flex-row mx-auto justify-between">
+                <div class="relative w-4/5 mx-auto md:mx-0 md:w-2/6">
+                    <img src="images/vanilla_styled.jpg" alt="A delicious bowl of vanilla ice cream" class="shadow-2xl">
+                    <div class="bg-white font-heading rounded-full py-2 px-4 shadow-lg absolute bottom-8 right-8 md:bottom-16 md:-right-16">
+                        <span class="text-gray-500">Keto | Low-carb | Banting | Diabetic-friendly</span>
+                    </div>
+                </div>
+                <div class="mx-auto mt-16 w-4/5 md:w-3/6 md:mt-0 md:mx-0">
+                    <h1 class="text-stone text-4xl font-heading font-bold">You probably thought there's no such thing as healthy ice cream!</h1>
+                    <h2 class="text-stone text-lg mt-16 font-bold font-body">We’re serious about eating real food and our dairy ice cream is as real as it gets!</h2>
+                    <p class="text-stone font-body mt-4">Since 2014 we’ve been experimenting with only the highest quality ingredients (by the way, in our base mix we never use more than five ingredients), giving you a better alternative to products loaded with sugar and ingredients you can’t even pronounce.</p>
+                    <a href="#where-to-buy" class="link cursor-pointer font-heading flex mt-4">
+                        <span class="mr-2">Where to buy</span>
+                        <img src="/images/arrow.svg" alt="" class="arrow transform rotate-180">
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section id="whats-inside" class="bg-sky py-32">
+            <div class="w-4/5 mx-auto flex flex-col justify-between md:max-w-screen-lg md:flex-row">
+                <div class="w-full md:w-3/6">
+                    <h1 class="text-stone text-3xl font-heading font-bold">Most of the calories in The Ice Creamery ice cream come from healthy animal fats.</h1>
+                    <p class="text-stone font-body mt-8">We use high quality ingredients, therefore we are able to provide an ice cream with a very low carbohydrate content and sugar alcohols that do not spike blood sugar.</p>
+                    <p class="text-stone font-body mt-4"><span class="font-bold">Our base ingredients</span> include fresh cream, full cream milk, xylitol, egg yolk and milk solids. We don't add stuff to our products that even we won't eat!</p>
+                    <p class="text-stone font-body mt-4">For flavouring and colouring our products, we use real stuff such as cocoa powder, organic beetroot powder and mint extract.</p>
+                    <a href="#contact" class="link cursor-pointer font-heading flex mt-4">
+                        <span class="mr-2">Contact us</span>
+                        <img src="/images/arrow.svg" alt="" class="arrow transform rotate-180">
+                    </a>
+                </div>
+                <div class="relative w-4/5 pb-72 mx-auto mt-8 md:w-2/6 md:mx-0 md:pb-0">
+                    <img src="images/delicious-ice-cream.png" alt="" class="absolute z-0">
+                    <div class="bg-white font-heading rounded-full py-2 px-4 shadow-lg absolute top-4 left-4 z-10">
+                        <span class="text-gray-500 text-2xl font-bold">Fresh cream</span>
+                    </div>
+                    <div class="bg-white font-heading rounded-full py-2 px-4 shadow-lg absolute top-16 md:top-32 -right-8 z-10">
+                        <span class="text-gray-500 text-md">Full cream milk</span>
+                    </div>
+                    <div class="bg-white font-heading rounded-full py-2 px-4 shadow-lg absolute top-32 left-32 z-10">
+                        <span class="text-gray-500 text-sm">Egg yolk</span>
+                    </div>
+                    <div class="bg-white font-heading rounded-full py-2 px-4 shadow-lg absolute bottom-32 left-8 z-10">
+                        <span class="text-gray-500">Xylitol</span>
+                    </div>
+                    <div class="bg-white font-heading rounded-full py-2 px-4 shadow-lg absolute bottom-8 md:bottom-24 right-8 z-10">
+                        <span class="text-gray-500">Organic milk solids</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="where-to-buy" class="bg-caramel py-16">
+            <div class="shops-container flex flex-col mx-auto justify-between md:max-w-screen-lg md:flex-row">
+                <div class="relative mb-48 w-4/5 md:w-2/6">
+                    <img src="images/gray_circles.svg" alt="" class="gray-circles">
+                    <img src="images/choc_mint.jpg" alt="" class="shadow-2xl absolute top-8 left-32 md:top-16 md:left-16 z-10">
+                    <img src="images/cinnamon_chai.jpg" alt="" class="shadow-2xl w-4/6 absolute top-32 md:top-56 md:-left-4 z-20">
+                    <div class="absolute z-30 top-64 -right-8 md:-right-32 md:pt-32">
+                        <div class="bg-white font-heading rounded-full py-2 px-4 mb-4 shadow-lg inline-block">
+                            <span class="text-gray-500">Grab a tub of</span>
+                        </div>
+                        <div class="bg-white font-heading rounded-full py-2 px-4 shadow-lg">
+                            <span class="text-gray-500">guilt-free premium ice cream</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-4/5 mt-64 mx-auto md:w-3/6 md:mx-0">
+                    <h1 class="text-stone text-3xl font-heading font-bold">Where to buy</h1>
+
+                    <p class="text-stone font-body mt-8">You can find our ice cream at the following stores around Johannesburg and Pretoria:</p>
+
+                    <p class="text-stone font-heading text-2xl mt-8 mb-4 font-bold">Spar</p>
+                    <div class="divider bg-stone"></div>
+                    <p class="text-stone font-body mt-4">Woodhill Spar</p>
+                    <p class="text-stone font-body mt-4">Willow Way Spar</p>
+                    <p class="text-stone font-body mt-4">Midstream Spar</p>
+                    <p class="text-stone font-body mt-4">Queenswood Spar</p>
+                    <p class="text-stone font-body mt-4">Newlands Spar</p>
+                    <p class="text-stone font-body mt-4">Waterkloof Corner Spar</p>
+                    <p class="text-stone font-body mt-4">Lyttleton Spar</p>
+                    <p class="text-stone font-body mt-4">Monument Park Spar</p>
+                    <p class="text-stone font-body mt-4">Sutherland Spar</p>
+                    <p class="text-stone font-body mt-4">Valhalla Spar</p>
+                    <p class="text-stone font-body mt-4">Saxby Spar</p>
+                    <p class="text-stone font-body mt-4">Saxby Spar</p>
+                    <p class="text-stone font-body mt-4">Medvalue Zambesi Pharmacy</p>
+                    <p class="text-stone font-body mt-4">Your friend in Need Health Shop Doringkloof Mall</p>
+                    <p class="text-stone font-body mt-4">Blos Café Bakkery, Faerie Glen</p>
+                    <p class="text-stone font-body mt-4">One life Health Supermarket Galway and kilkenny Rd, Hennopspark, Centurion</p>
+                    <p class="text-stone font-body mt-4">Wellutions, 96 Kessel streetm Fairland</p>
+                    <p class="text-stone font-body mt-4">Heavenly Hands, 70 Tugela Street,  Carletonville</p>
+
+                    <p class="text-stone font-heading text-2xl mt-24 mb-4 font-bold">Other stores</p>
+                    <div class="divider bg-stone"></div>
+                    <p class="text-stone font-body mt-4">Wellutions - Johannesburg</p>
+                    <p class="text-stone font-body mt-4">Pretoria Banting Market - Brooklyn Mall</p>
+                    <p class="text-stone font-body mt-4">Jackson’s Real Food Market - Bryanston & Kyalami Corner</p>
+                    <p class="text-stone font-body mt-4">Nuts About You - Douglasdale</p>
+                    <p class="text-stone font-body mt-4">Engen Performance Fuel Quickshop (Hatfield)</p>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="bg-stone pt-16 pb-48">
+            <div class="flex flex-col mx-auto justify-between md:max-w-screen-lg md:flex-row">
+                <div class="w-4/5 mx-auto md:w-3/6 md:mx-0">
+                    <h1 class="text-white text-3xl font-heading font-bold">Contact us</h1>
+                    <p class="text-white font-body mt-8">Follow our Facebook and Instagram pages to stay in the loop. Alternatively, send an email or phone us should you require more detailed information or assistance.</p>
+                    <p class="font-body font-bold mt-8 text-white">079 527 4902 <span class="mx-4">/</span> <span class="epos"></span></p>
+                    <div class="divider bg-white mt-4"></div>
+                    <a href="https://facebook.com/icecreamsugarfree/">
+                        <p class="text-white mt-8"><img src="/images/fb_logo_white.svg" alt="" class="inline mr-2"> facebook.com/icecreamsugarfree</p>
+                    </a>
+                    <a href="https://instagram.com/the_ice_creamery">
+                        <p class="text-white mt-2"><img src="/images/ig_logo_white.svg" alt="" class="inline mr-2"> instagram.com/the_ice_creamery</p>
+                    </a>
+                </div>
+                <div class="relative w-4/5 mx-auto mt-8 py-24 md:w-2/6 md:mx-0 md:py-0 md:mt-0">
+                    <img src="images/coffee.jpg" alt="" class="shadow-2xl absolute top-6 right-4 md:top-0 md:-right-32 z-20 w-48">
+                    <img src="images/choc.jpg" alt="" class="shadow-2xl absolute w-4/6 md:top-16 md:-left-8 md:w-auto z-10">
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-stone flex flex-col" x-data="{}">
+        <a class="link cursor-pointer font-heading flex self-end pr-8 mb-4" @click="window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })">
+            <span class="mr-2 text-white">Back to top</span>
+            <img src="/images/arrow.svg" alt="" class="arrow btt">
+        </a>
+        <div class="w-full md:w-2/5 self-end mb-8 pr-8">
+            <p class="text-white text-right">© 2021 The Ice Creamery</p>
+            <p class="text-white text-right">Designed & built by <a href="https://chilldsgn.com" target="_blank" class="font-bold">chilldsgn.com</a></p>
+            <p class="text-white text-right">Photography by Juniper Creative</p>
+        </div>
+        <div class="flex w-full">
+            <div class="bg-caramel p-1 w-1/5"></div>
+            <div class="bg-hotPink p-1 w-1/5"></div>
+            <div class="bg-sky p-1 w-1/5"></div>
+            <div class="bg-darkSky p-1 w-1/5"></div>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>

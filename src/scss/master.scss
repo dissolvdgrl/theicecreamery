@@ -1,0 +1,93 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* purgecss start ignore */
+.logo {
+    width: 100%;
+    max-width: 150px;
+}
+
+.slide-container {
+    background-image: url('/images/gradient_ellipse.svg');
+    background-size: 60%;
+    background-position: 100% 75%;
+    background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+    .slide-container {
+        background-position: top right;
+    }
+ }
+
+.arrow {
+    width: 25px;
+}
+
+.slide-content {
+    img:first-of-type {
+        top: -6rem;
+        right: -2rem;
+    }
+}
+
+#about {
+    overflow: visible;
+    background-image: url('/images/blue_circles.svg');
+    background-size: 40%;
+    background-position: 30% 50%;
+    background-repeat: no-repeat;
+}
+
+.link {
+    .arrow {
+        transition: all 0.2s ease;
+    }
+    &:hover .arrow {
+        margin-left: 0.5rem;
+    }
+
+    .btt {
+        transform: rotate(90deg);
+    }
+
+    &:hover .btt {
+        margin-top: -0.5rem;
+        margin-left: 0;
+    }
+}
+
+.divider {
+    display: block;
+    padding: 1px;
+}
+
+.shops-container {
+    background-image: url('/images/gradient_ellipse_90.svg');
+    background-size: 60%;
+    background-position: top left;
+    background-repeat: no-repeat;
+}
+
+.gray-circles {
+    position: absolute;
+    width: 150%;
+    max-width: none;
+    right: -15rem;
+    top: 10rem;
+}
+
+#contact {
+    background-image: url('/images/contact_circles.svg');
+    background-size: 70%;
+    background-position: top right;
+    background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+    #contact {
+        background-size: 35%;
+    }
+}
+/* purgecss end ignore */
